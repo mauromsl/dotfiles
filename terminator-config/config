@@ -1,0 +1,26 @@
+[global_config]
+  title_hide_sizetext = True
+  title_transmit_bg_color = "#8c3fbf"
+[keybindings]
+  scaled_zoom = <Alt>Return
+  toggle_zoom = <Primary><Shift>z
+[layouts]
+  [[default]]
+    [[[child1]]]
+      parent = window0
+      profile = default
+      type = Terminal
+    [[[window0]]]
+      parent = ""
+      type = Window
+[plugins]
+[profiles]
+  [[default]]
+    background_darkness = 0.9
+    cursor_color = "#aaaaaa"
+    font = Monospace 11
+    palette = "#2e3436:#cc0000:#8ae234:#c4a000:#729fcf:#ad7fa8:#34e2e2:#d3d7cf:#555753:#ef2929:#8ae234:#fce94f:#729fcf:#ad7fa8:#34e2e2:#eeeeec"
+    scrollback_infinite = True
+    scrollbar_position = hidden
+    use_system_font = False
+    use_theme_colors = True

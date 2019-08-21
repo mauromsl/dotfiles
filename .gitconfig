@@ -1,0 +1,5 @@
+[user]
+	email = mauro.msl@outlook.com
+	name = Mauro MSL
+[gpg]
+	program = gpg2
