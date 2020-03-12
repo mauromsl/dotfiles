@@ -8,3 +8,4 @@ PS1="$PS1$GIT_PS1"
 HISTSIZE=-1
 HISTFILESIZE=-1
 PATH=$PATH:~/.local/bin
+TERMINAL=`which terminator`
