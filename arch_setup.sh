@@ -4,7 +4,7 @@ sudo pacman -R --noconfirm\
 	vim \
 	yaourt
 
-sudo pacman -S --noconfirm\
+sudo pacman -Sy --noconfirm\
 	i3-gaps \
 	py3status \
 	git \
@@ -56,6 +56,10 @@ ln -s `pwd`/terminator-config $HOME/.config/terminator
 echo "Configuring Git"
 rm -rf $HOME/.gitconfig ||: 2>/dev/null
 ln -s `pwd`/.gitconfig $HOME/.gitconfig
+
+echo "Configuring X"
+rm -rf $HOME/.xprofile ||: 2>/dev/null
+ln -s `pwd`/.xprofile $HOME/.xprofile
 
 rm -rf $HOME/.git-prompt.sh ||: 2>/dev/null
 ln -s `pwd`/git-prompt.sh $HOME/.git-prompt.sh
