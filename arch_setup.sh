@@ -1,8 +1,7 @@
 #! /bin/bash
 echo "Installing Packages"
 sudo pacman -R --noconfirm\
-	vim \
-	yaourt
+	vim
 
 sudo pacman -Sy --noconfirm\
 	i3-gaps \
@@ -17,6 +16,7 @@ sudo pacman -Sy --noconfirm\
 	openssh \
 	gvim \
 	playerctl \
+	firefox \
 	yay
 
 
@@ -32,12 +32,14 @@ rm $HOME/.bashrc || true 2>/dev/null
 rm $HOME/.bash_profile || true  2>/dev/null
 rm $HOME/.my-bashrc || true  2>/dev/null
 rm $HOME/.profile || true 2>/dev/null
-rm $HOME/.vimrc || true 2>/dev/null
 
 ln -s `pwd`/.bashrc $HOME/.bashrc
 ln -s `pwd`/.profile $HOME/.profile
 ln -s `pwd`/.my-bashrc $HOME/.my-bashrc
 ln -s `pwd`/.bash_profile $HOME/.bash_profile
+
+echo "Configuring Vim"
+rm $HOME/.vimrc || true 2>/dev/null
 ln -s `pwd`/.vimrc $HOME/.vimrc
 
 [[ ! -f $HOME/.vim/bundle/Vundle.vim ]] && git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
