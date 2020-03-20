@@ -45,26 +45,26 @@ ln -s `pwd`/.vimrc $HOME/.vimrc
 
 echo "Configuring i3"
 
-rm -rf $HOME/.config/i3 ||: 2>/dev/null
+rm -rf $HOME/.config/i3 || true 2>/dev/null
 ln -s `pwd`/i3-config $HOME/.config/i3
 
 echo "Configuring Terminator"
 
-rm -rf $HOME/.config/terminator ||: 2>/dev/null
+rm -rf $HOME/.config/terminator || true 2>/dev/null
 ln -s `pwd`/terminator-config $HOME/.config/terminator
 
 echo "Configuring Git"
-rm -rf $HOME/.gitconfig ||: 2>/dev/null
+rm -rf $HOME/.gitconfig || true 2>/dev/null
 ln -s `pwd`/.gitconfig $HOME/.gitconfig
 
 echo "Configuring X"
-rm -rf $HOME/.xprofile ||: 2>/dev/null
+rm -rf $HOME/.xprofile || true 2>/dev/null
 ln -s `pwd`/.xprofile $HOME/.xprofile
 
-rm -rf $HOME/.git-prompt.sh ||: 2>/dev/null
+rm -rf $HOME/.git-prompt.sh || true 2>/dev/null
 ln -s `pwd`/git-prompt.sh $HOME/.git-prompt.sh
 
 
 echo "Configuring mimeapps"
-rm $HOME/.config/.mimeapps.list ||: 2>/dev/null
+rm $HOME/.config/.mimeapps.list ||true 2>/dev/null
 ln -s `pwd`/.mimeapps.list $HOME/.config/.mimeapps.list
