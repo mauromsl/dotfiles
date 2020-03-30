@@ -1,6 +1,8 @@
 set number
 set background=dark
 set encoding=utf-8
+set hlsearch
+hi Search ctermbg='LightBlue'
 syntax on
 
 "Autocomplete bash-like:
