@@ -80,3 +80,8 @@ nmap <Left> <<
 nmap <Right> >>
 vmap <Left> <gv
 vmap <Right> >gv
+" Chords are for piano
+nnoremap ; :
+" Escape stops hlsearch
+nnoremap <esc> :noh<return><esc>
+nnoremap <esc>^[ <esc>^[
