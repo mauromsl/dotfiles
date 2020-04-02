@@ -76,8 +76,11 @@ match ExtraWhitespace /\s\+$/
 " Remaps
 noremap <Up> <C-y>
 noremap <Down> <C-e>
+noremap <C-j> <C-d>
+noremap <C-k> <C-u>
 nmap <Left> <<
 nmap <Right> >>
+nmap s <Plug>Ysurround
 vmap <Left> <gv
 vmap <Right> >gv
 " Chords are for piano
