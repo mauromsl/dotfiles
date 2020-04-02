@@ -43,7 +43,7 @@ Bundle 'Valloric/YouCompleteMe'
 Plugin 'ctrlpvim/ctrlp.vim'
 
 Plugin 'vim-airline/vim-airline'
-Plugin 'tpope/vim-surround'
+Plugin 'mauromsl/vim-surround'
 
 call vundle#end()            " required
 
