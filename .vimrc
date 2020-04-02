@@ -21,6 +21,9 @@ call vundle#begin()
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
 
+" Ctags
+Plugin 'taglist.vim'
+
 " Git
 Plugin 'tpope/vim-fugitive'
 Plugin 'airblade/vim-gitgutter'
@@ -41,6 +44,7 @@ let g:pymode_python = 'python3'
 Bundle 'Valloric/YouCompleteMe'
 
 Plugin 'ctrlpvim/ctrlp.vim'
+Plugin 'jiangmiao/auto-pairs'
 
 Plugin 'vim-airline/vim-airline'
 Plugin 'mauromsl/vim-surround'
