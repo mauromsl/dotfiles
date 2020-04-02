@@ -2,7 +2,7 @@ set number
 set background=dark
 set encoding=utf-8
 set hlsearch
-hi Search ctermbg='LightBlue'
+hi Search ctermbg=LightBlue
 syntax on
 
 "Autocomplete bash-like:
@@ -49,27 +49,27 @@ call vundle#end()            " required
 
 filetype plugin indent on    " required
 
+highlight ExtraWhitespace ctermbg=blue guibg=blue
+match ExtraWhitespace /\s\+$\|[^ ]  [^ ]/
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " File type specific
 
-au BufNewFile,BufRead *.py set tabstop=4    softtabstop=4     shiftwidth=4     colorcolumn=80     expandtab     smartindent     fileformat=unix
-au BufNewFile,BufRead *.html set tabstop=4    softtabstop=4     shiftwidth=4    expandtab     smartindent     fileformat=unix nowrap
+au FileType python call SetPythonOptions()
+function SetPythonOptions()
+    set tabstop=4 softtabstop=4 shiftwidth=4 colorcolumn=80 expandtab smartindent fileformat=unix
+    " Match bad indent (starts with space AND number of spaces not multiple of 4)
+    call matchadd('ExtraWhitespace', '\v^((([ ]{4})+[^ ])@!)(^[ ])@=[ ]*')
+endfunction
+
+au BufNewFile,BufRead *.html set tabstop=4 softtabstop=4 shiftwidth=4 expandtab smartindent fileformat=unix nowrap
 au BufNewFile,BufRead *.csv set nowrap
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-" Higlight Whitespace
-
+" Render Whitespace
 set list
+set listchars=tab:--,trail:~,extends:>,precedes:<
 
-" Highlights all whitespace
-set listchars=eol:¬,tab:--,trail:~,extends:>,precedes:<,space:˙
-
-"extra whitespace:
-
-highlight ExtraWhitespace ctermbg=red guibg=red
-
-match ExtraWhitespace /\s\+$/
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
