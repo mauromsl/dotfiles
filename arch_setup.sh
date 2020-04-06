@@ -17,6 +17,7 @@ sudo pacman -Sy --noconfirm\
 	gvim \
 	playerctl \
 	firefox \
+	redshift \
 
 
 echo "Configuring docker"
@@ -60,6 +61,7 @@ ln -s `pwd`/.gitconfig $HOME/.gitconfig
 echo "Configuring X"
 rm -rf $HOME/.xprofile || true 2>/dev/null
 ln -s `pwd`/.xprofile $HOME/.xprofile
+systemctl --user enable redshift-gtk.service
 
 rm -rf $HOME/.git-prompt.sh || true 2>/dev/null
 ln -s `pwd`/git-prompt.sh $HOME/.git-prompt.sh
