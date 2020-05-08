@@ -46,12 +46,15 @@ let g:pymode_python = 'python3'
 
 "Autocompletion library (SLOW)
 Bundle 'Valloric/YouCompleteMe'
+let g:ycm_confirm_extra_conf=0
+let g:ycm_autoclose_preview_window_after_insertion = 1
 
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'jiangmiao/auto-pairs'
+Plugin 'mauromsl/vim-surround'
 
 Plugin 'vim-airline/vim-airline'
-Plugin 'mauromsl/vim-surround'
+Plugin 'arcticicestudio/nord-vim'
 
 call vundle#end()            " required
 
@@ -67,6 +70,7 @@ function SetPythonOptions()
     set tabstop=4 softtabstop=4 shiftwidth=4 colorcolumn=80 expandtab smartindent fileformat=unix
     " Match bad indent (starts with space AND number of spaces not multiple of 4)
     call matchadd('ExtraWhitespace', '\v^((([ ]{4})+[^ ])@!)(^[ ])@=[ ]*')
+    hi MatchParen cterm=bold ctermbg=none ctermfg=magenta
 endfunction
 
 au BufNewFile,BufRead *.html set tabstop=4 softtabstop=4 shiftwidth=4 expandtab smartindent fileformat=unix nowrap
@@ -96,3 +100,5 @@ nnoremap ; :
 " Escape stops hlsearch
 nnoremap <esc> :noh<return><esc>
 nnoremap <esc>^[ <esc>^[
+
+colorscheme nord
