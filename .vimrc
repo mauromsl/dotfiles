@@ -1,9 +1,13 @@
 set number
+set relativenumber
 set background=dark
 set encoding=utf-8
+set incsearch
 set hlsearch
 hi Search ctermbg=LightBlue
 syntax on
+
+set splitbelow splitright
 
 "Autocomplete bash-like:
 set wildmode=longest,list,full
