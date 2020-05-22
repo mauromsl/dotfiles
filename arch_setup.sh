@@ -68,5 +68,5 @@ ln -s `pwd`/git-prompt.sh $HOME/.git-prompt.sh
 
 
 echo "Configuring mimeapps"
-rm $HOME/.config/.mimeapps.list ||true 2>/dev/null
+rm $HOME/.config/.mimeapps.list ||: 2>/dev/null
 ln -s `pwd`/.mimeapps.list $HOME/.config/.mimeapps.list

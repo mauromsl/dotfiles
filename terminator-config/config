@@ -1,4 +1,5 @@
 [global_config]
+  dbus = False
   title_hide_sizetext = True
   title_inactive_bg_color = "#4C566A"
   title_inactive_fg_color = "#D8DEE9"
@@ -42,3 +43,12 @@
     scrollbar_position = hidden
     use_system_font = False
     use_theme_colors = True
+  [[light]]
+    background_color = "#fdf6e3"
+    cursor_color = "#aaaaaa"
+    font = Monospace 12
+    foreground_color = "#657b83"
+    scrollback_infinite = True
+    scrollbar_position = hidden
+    show_titlebar = False
+    use_system_font = False
