@@ -102,3 +102,6 @@ nnoremap <esc> :noh<return><esc>
 nnoremap <esc>^[ <esc>^[
 
 colorscheme nord
+if $BACKGROUND == 'light'
+  set background=light
+endif
