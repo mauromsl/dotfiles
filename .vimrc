@@ -50,6 +50,7 @@ let g:ycm_confirm_extra_conf=0
 let g:ycm_autoclose_preview_window_after_insertion = 1
 
 Plugin 'ctrlpvim/ctrlp.vim'
+let g:ctrlp_max_depth=30
 Plugin 'jiangmiao/auto-pairs'
 Plugin 'mauromsl/vim-surround'
 
@@ -62,6 +63,7 @@ filetype plugin indent on    " required
 
 highlight ExtraWhitespace ctermbg=blue guibg=blue
 match ExtraWhitespace /\s\+$\|[^ ]  [^ ]/
+:autocmd ColorScheme * highlight ExtraWhitespace ctermbg=blue guibg=blue
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " File type specific
 
@@ -74,6 +76,7 @@ function SetPythonOptions()
 endfunction
 
 au BufNewFile,BufRead *.html set tabstop=4 softtabstop=4 shiftwidth=4 expandtab smartindent fileformat=unix nowrap
+au BufNewFile,BufRead *.xml set tabstop=4 softtabstop=4 shiftwidth=4 expandtab smartindent fileformat=unix nowrap
 au BufNewFile,BufRead *.csv set nowrap
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
