@@ -1,0 +1,38 @@
+{
+    "editor.rulers": [
+        80,
+        120
+    ],
+    "editor.renderWhitespace": "all",
+    "editor.lineNumbers": "on",
+    "vim.smartRelativeLine": true,
+    "workbench.colorTheme": "Nord",
+    "editor.fontFamily": "Monokai, 'Cascadia Mono', 'DejaVu Sans Mono', Consolas, monospace",
+    "files.insertFinalNewline": true,
+    "workbench.editorAssociations": {
+        "*.ipynb": "jupyter-notebook"
+    },
+    "terminal.integrated.fontSize": 16,
+    "python.languageServer": "Jedi",
+    "python.analysis.autoSearchPaths": true,
+    "python.analysis.extraPaths": [
+        "/home/augron/git/janeway/src/"
+    ],
+    "python.linting.pylintArgs": [
+        "--load-plugins=pylint_django"
+],
+"editor.tabSize": 4,
+"editor.cursorStyle": "line",
+"editor.insertSpaces": false,
+"editor.wordSeparators": "/\\()\"':,.;<>~!@#$%^&*|+=[]{}`?-",
+"editor.wordWrap": "off",
+"python.defaultInterpreterPath": "\\usr\\bin\\python3",
+"notebook.cellToolbarLocation": {
+    "default": "right",
+    "jupyter-notebook": "left"
+},
+"editor.smoothScrolling": true,
+"workbench.list.smoothScrolling": true,
+"security.workspace.trust.untrustedFiles": "open"
+
+}
