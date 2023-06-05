@@ -35,6 +35,7 @@ Plugin 'airblade/vim-gitgutter'
 " HTML and CSS
 Plugin 'mattn/emmet-vim'
 Plugin 'ap/vim-css-color'
+Plugin 'gregsexton/matchtag'
 
 " Go (run :GoInstallBinaries to complete installation)
 Plugin 'fatih/vim-go'
@@ -45,12 +46,12 @@ let g:pymode_python = 'python3'
 "Plugin 'nvie/vim-flake8'
 
 "Autocompletion library (SLOW)
-Bundle 'Valloric/YouCompleteMe'
-let g:ycm_confirm_extra_conf=0
-let g:ycm_autoclose_preview_window_after_insertion = 1
+Bundle 'neoclide/coc.nvim'
 
+" General tools
 Plugin 'ctrlpvim/ctrlp.vim'
 let g:ctrlp_max_depth=30
+let g:ctrlp_max_files=0
 Plugin 'jiangmiao/auto-pairs'
 Plugin 'mauromsl/vim-surround'
 
@@ -74,6 +75,7 @@ function SetPythonOptions()
     call matchadd('ExtraWhitespace', '\v^((([ ]{4})+[^ ])@!)(^[ ])@=[ ]*')
     hi MatchParen cterm=bold ctermbg=none ctermfg=magenta
 endfunction
+autocmd FileType python let b:coc_root_patterns = ['.git', './src/']
 
 au BufNewFile,BufRead *.html set tabstop=4 softtabstop=4 shiftwidth=4 expandtab smartindent fileformat=unix nowrap
 au BufNewFile,BufRead *.xml set tabstop=4 softtabstop=4 shiftwidth=4 expandtab smartindent fileformat=unix nowrap
