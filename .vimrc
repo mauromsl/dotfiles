@@ -41,8 +41,8 @@ Plugin 'gregsexton/matchtag'
 Plugin 'fatih/vim-go'
 
 " Python
-Plugin 'python-mode/python-mode'
-let g:pymode_python = 'python3'
+"Plugin 'python-mode/python-mode'
+"let g:pymode_python = 'python3'
 "Plugin 'nvie/vim-flake8'
 
 "Autocompletion library (SLOW)
@@ -54,7 +54,10 @@ let g:ctrlp_max_depth=30
 let g:ctrlp_max_files=0
 Plugin 'jiangmiao/auto-pairs'
 Plugin 'mauromsl/vim-surround'
+Plugin 'tpope/vim-commentary'
+Plugin 'psliwka/vim-smoothie'
 
+" Extra points for style
 Plugin 'vim-airline/vim-airline'
 Plugin 'arcticicestudio/nord-vim'
 
@@ -109,4 +112,13 @@ nnoremap <esc>^[ <esc>^[
 colorscheme nord
 if $BACKGROUND == 'light'
   set background=light
+endif
+
+" WSL yank support
+let s:clip = '/mnt/c/Windows/System32/clip.exe'  " change this path to match C drive mountpoint
+if executable(s:clip)
+    augroup WSLYank
+      autocmd!
+      autocmd TextYankPost * if v:event.operator ==# 'y' | call system(s:clip, @0) | endif
+    augroup END
 endif
