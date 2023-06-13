@@ -26,7 +26,7 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 
 " Ctags
-Plugin 'taglist.vim'
+" Plugin 'taglist.vim'
 
 " Git
 Plugin 'tpope/vim-fugitive'
@@ -49,10 +49,7 @@ Plugin 'fatih/vim-go'
 Bundle 'neoclide/coc.nvim'
 
 " General tools
-Plugin 'ctrlpvim/ctrlp.vim'
-let g:ctrlp_max_depth=30
-let g:ctrlp_max_files=0
-Plugin 'jiangmiao/auto-pairs'
+Plugin 'junegunn/fzf',
 Plugin 'mauromsl/vim-surround'
 Plugin 'tpope/vim-commentary'
 Plugin 'psliwka/vim-smoothie'
@@ -108,6 +105,9 @@ nnoremap ; :
 " Escape stops hlsearch
 nnoremap <esc> :noh<return><esc>
 nnoremap <esc>^[ <esc>^[
+
+" Maps CtrlP to FZF
+nnoremap <C-p> :FZF<Cr>
 
 colorscheme nord
 if $BACKGROUND == 'light'
