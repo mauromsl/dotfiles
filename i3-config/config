@@ -86,6 +86,9 @@ bindsym Ctrl+Print exec "flameshot gui -d 3000"
 bindsym $mod+Ctrl+Shift+h exec xdg-open /usr/share/doc/manjaro/i3_help.pdf
 bindsym $mod+Ctrl+x --release exec --no-startup-id xkill
 
+# ROG button on Asus ROG machines
+bindsym XF86Launch1 exec rog-control-center
+
 focus_follows_mouse no
 
 # change focus
