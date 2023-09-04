@@ -77,6 +77,7 @@ autocmd FileType python let b:coc_root_patterns = ['.git', './src/']
 
 au BufNewFile,BufRead *.html set tabstop=4 softtabstop=4 shiftwidth=4 expandtab smartindent fileformat=unix nowrap
 au BufNewFile,BufRead *.xml set tabstop=4 softtabstop=4 shiftwidth=4 expandtab smartindent fileformat=unix nowrap
+au BufNewFile,BufRead *.xsl set tabstop=2 softtabstop=2 shiftwidth=2 expandtab smartindent fileformat=unix nowrap
 au BufNewFile,BufRead *.csv set nowrap
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
