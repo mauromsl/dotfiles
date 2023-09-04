@@ -17,7 +17,8 @@ sudo pacman -Sy --noconfirm\
 	gvim \
 	playerctl \
 	firefox \
-	redshift \
+	flameshot \
+	peek
 
 
 echo "Configuring docker"
