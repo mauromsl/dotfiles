@@ -18,49 +18,47 @@ filetype off                  " required
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-" set the runtime path to include Vundle and initialize
+" Install vim-plug if we don't already have it
+if empty(glob('~/.vim/autoload/plug.vim'))
+silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+\ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
 
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-" let Vundle manage Vundle, required
-Plugin 'VundleVim/Vundle.vim'
-
-" Ctags
-" Plugin 'taglist.vim'
+call plug#begin('~/.vim/plugged')
 
 " Git
-Plugin 'tpope/vim-fugitive'
-Plugin 'airblade/vim-gitgutter'
+Plug 'tpope/vim-fugitive'
+Plug 'airblade/vim-gitgutter'
 
 " HTML and CSS
-Plugin 'mattn/emmet-vim'
-Plugin 'ap/vim-css-color'
-Plugin 'gregsexton/matchtag'
+Plug 'mattn/emmet-vim'
+Plug 'ap/vim-css-color'
+Plug 'gregsexton/matchtag'
 
 " Go (run :GoInstallBinaries to complete installation)
-Plugin 'fatih/vim-go'
+Plug 'fatih/vim-go'
 
 " Python
-"Plugin 'python-mode/python-mode'
+"Plug 'python-mode/python-mode'
 "let g:pymode_python = 'python3'
-"Plugin 'nvie/vim-flake8'
+"Plug 'nvie/vim-flake8'
 
 "Autocompletion library (SLOW)
-Bundle 'neoclide/coc.nvim'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 " General tools
-Plugin 'junegunn/fzf',
-Plugin 'mauromsl/vim-surround'
-Plugin 'tpope/vim-commentary'
-Plugin 'psliwka/vim-smoothie'
+Plug 'junegunn/fzf',
+Plug 'mauromsl/vim-surround'
+Plug 'tpope/vim-commentary'
+Plug 'psliwka/vim-smoothie'
 
 " Extra points for style
-Plugin 'vim-airline/vim-airline'
-Plugin 'arcticicestudio/nord-vim'
+Plug 'vim-airline/vim-airline'
+Plug 'arcticicestudio/nord-vim'
 
-call vundle#end()            " required
+call plug#end()
 
-filetype plugin indent on    " required
 
 highlight ExtraWhitespace ctermbg=blue guibg=blue
 match ExtraWhitespace /\s\+$\|[^ ]  [^ ]/
