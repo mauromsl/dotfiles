@@ -62,6 +62,8 @@ ln -s `pwd`/.gitconfig $HOME/.gitconfig
 echo "Configuring X"
 rm -rf $HOME/.xprofile || true 2>/dev/null
 ln -s `pwd`/.xprofile $HOME/.xprofile
+rm -rf $HOME/.Xresources || true 2>/dev/null
+ln -s `pwd`/Xresources $HOME/.Xresources
 systemctl --user enable redshift-gtk.service
 
 rm -rf $HOME/.git-prompt.sh || true 2>/dev/null
