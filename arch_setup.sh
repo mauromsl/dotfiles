@@ -75,6 +75,13 @@ ln -s `pwd`/themes $HOME/.themes
 rm -rf $HOME/.config/gtk-3.0 || true 2>/dev/null
 ln -s `pwd`/gtk-3.0 s$HOME/.config/gtk-3.0
 
+echo "Configuring nitrogen"
+rm -rf $HOME/.config/nitrogen || true 2>/dev/null
+ln -s `pwd`/nitrogen $HOME/.config/nitrogen
+rm -rf $HOME/.config/assets || true 2>/dev/null
+ln -s `pwd`/assets $HOME/.config/assets
+
+
 echo "Configuring mimeapps"
 rm $HOME/.config/.mimeapps.list ||: 2>/dev/null
 ln -s `pwd`/.mimeapps.list $HOME/.config/.mimeapps.list
