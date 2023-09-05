@@ -69,6 +69,11 @@ systemctl --user enable redshift-gtk.service
 rm -rf $HOME/.git-prompt.sh || true 2>/dev/null
 ln -s `pwd`/git-prompt.sh $HOME/.git-prompt.sh
 
+echo "Configuring GTK themes"
+rm -rf $HOME/.themes || true 2>/dev/null
+ln -s `pwd`/themes $HOME/.themes
+rm -rf $HOME/.config/gtk-3.0 || true 2>/dev/null
+ln -s `pwd`/gtk-3.0 s$HOME/.config/gtk-3.0
 
 echo "Configuring mimeapps"
 rm $HOME/.config/.mimeapps.list ||: 2>/dev/null
