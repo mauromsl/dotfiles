@@ -46,14 +46,16 @@ ln -s `pwd`/.vimrc $HOME/.vimrc
 
 
 echo "Configuring i3"
-
 rm -rf $HOME/.config/i3 || true 2>/dev/null
 ln -s `pwd`/i3-config $HOME/.config/i3
 
 echo "Configuring Terminator"
-
 rm -rf $HOME/.config/terminator || true 2>/dev/null
 ln -s `pwd`/terminator-config $HOME/.config/terminator
+
+echo "Configuring custom scripts"
+rm -rf $HOME/.local/bin || true 2>/dev/null
+ln -s `pwd`/bin $HOME/.local/bin
 
 echo "Configuring Git"
 rm -rf $HOME/.gitconfig || true 2>/dev/null
@@ -83,5 +85,5 @@ ln -s `pwd`/share/backgrounds $HOME/.local/share/backgrounds
 
 
 echo "Configuring mimeapps"
-rm $HOME/.config/.mimeapps.list ||: 2>/dev/null
+rm $HOME/.config/.mimeapps.list || 2>/dev/null
 ln -s `pwd`/.mimeapps.list $HOME/.config/.mimeapps.list

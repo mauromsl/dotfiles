@@ -2,7 +2,7 @@
 # ~/.bashrc
 #
 
-[[ -f ~/.git-prompt.sh ]] && . ~/.git-prompt.sh
+[[ -f ~/.local/bin/git-prompt.sh ]] && . ~/.local/bin/git-prompt.sh
 GIT_PS1='$(__git_ps1 "(%s)")$ '
 PS1="$PS1$GIT_PS1"
 HISTSIZE=-1
