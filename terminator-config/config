@@ -11,7 +11,7 @@
 [profiles]
   [[default]]
     background_color = "#3d3846"
-    background_darkness = 0.9
+    background_darkness = 0.95
     background_type = transparent
     font = Monospace 11
     foreground_color = "#ffffff"

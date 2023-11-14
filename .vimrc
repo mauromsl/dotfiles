@@ -4,6 +4,7 @@ set background=dark
 set encoding=utf-8
 set incsearch
 set hlsearch
+set gp=git\ grep\ -n
 hi Search ctermbg=LightBlue
 syntax on
 
