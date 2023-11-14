@@ -78,8 +78,8 @@ ln -s `pwd`/gtk-3.0 s$HOME/.config/gtk-3.0
 echo "Configuring nitrogen"
 rm -rf $HOME/.config/nitrogen || true 2>/dev/null
 ln -s `pwd`/nitrogen $HOME/.config/nitrogen
-rm -rf $HOME/.config/assets || true 2>/dev/null
-ln -s `pwd`/assets $HOME/.config/assets
+rm -rf $HOME/.local/share/backgrounds || true 2>/dev/null
+ln -s `pwd`/share/backgrounds $HOME/.local/share/backgrounds
 
 
 echo "Configuring mimeapps"
