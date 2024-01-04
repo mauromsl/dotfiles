@@ -5,7 +5,6 @@
 configuration {
     font:                "Noto Sans Regular 10";
     show-icons:          true;
-    icon-theme:          "Qogir";
     display-drun:        "Apps";
     drun-display-format: "{name}";
     scroll-method:       0;
@@ -133,3 +132,4 @@ textbox-prompt-colon {
     margin:     0px 0.3em 0em 0em;
     text-color: @normal-foreground;
 }
+@theme "~/.config/rofi/nord.rasi"

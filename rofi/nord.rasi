@@ -1,12 +1,6 @@
-/** Adapted from https://github.com/undiabler/nord-rofi-theme */
-/**
- * Nordic rofi theme
- * Adapted by undiabler <undiabler@gmail.com>
- *
- * Nord Color palette imported from https://www.nordtheme.com/
- *
- */
-
+/** 
+* Adapted from https://github.com/undiabler/nord-rofi-theme
+*/
 
 * {
 	nord0: #2e3440;
@@ -32,7 +26,6 @@
     foreground:  @nord9;
     backlight:   #ccffeedd;
     background-color:  transparent;
-    
     highlight:     underline bold #eceff4;
 
     transparent: rgba(46,52,64,0);
