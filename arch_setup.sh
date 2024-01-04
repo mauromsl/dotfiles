@@ -55,6 +55,10 @@ ln -s `pwd`/themes $HOME/.themes
 rm -rf $HOME/.config/gtk-3.0 || true 2>/dev/null
 ln -s `pwd`/gtk-3.0 $HOME/.config/gtk-3.0
 
+echo "Configuring rofi"
+rm -rf $HOME/.config/rofi || true 2>/dev/null
+ln -s `pwd`/rofi $HOME/.config/rofi
+
 echo "Configuring nitrogen"
 rm -rf $HOME/.config/nitrogen || true 2>/dev/null
 ln -s `pwd`/nitrogen $HOME/.config/nitrogen
