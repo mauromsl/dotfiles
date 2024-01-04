@@ -1,26 +1,4 @@
 #! /bin/bash
-echo "Installing Packages"
-sudo pacman -R --noconfirm\
-	vim
-
-sudo pacman -Sy --noconfirm\
-	i3-gaps \
-	py3status \
-	git \
-	strace \
-	bash-completion \
-	terminator \
-	pulseaudio-jack \
-	docker \
-	docker-compose \
-	openssh \
-	gvim \
-	playerctl \
-	firefox \
-	flameshot \
-	peek
-
-
 echo "Configuring docker"
 sudo usermod -aG docker $USER
 sudo systemctl enable docker && systemctl start docker
