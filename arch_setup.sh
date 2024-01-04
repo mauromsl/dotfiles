@@ -59,6 +59,10 @@ echo "Configuring rofi"
 rm -rf $HOME/.config/rofi || true 2>/dev/null
 ln -s `pwd`/rofi $HOME/.config/rofi
 
+echo "Configuring dunst"
+rm -rf $HOME/.config/dunst || true 2>/dev/null
+ln -s `pwd`/dunst $HOME/.config/dunst
+
 echo "Configuring nitrogen"
 rm -rf $HOME/.config/nitrogen || true 2>/dev/null
 ln -s `pwd`/nitrogen $HOME/.config/nitrogen
