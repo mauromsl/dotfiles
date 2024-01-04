@@ -10,17 +10,18 @@ rm $HOME/.bashrc || true 2>/dev/null
 rm $HOME/.bash_profile || true  2>/dev/null
 rm $HOME/.my-bashrc || true  2>/dev/null
 rm $HOME/.profile || true 2>/dev/null
+rm -r $HOME/.local/bin || true 2>/dev/null
 
 ln -s `pwd`/.bashrc $HOME/.bashrc
 ln -s `pwd`/.profile $HOME/.profile
 ln -s `pwd`/.my-bashrc $HOME/.my-bashrc
 ln -s `pwd`/.bash_profile $HOME/.bash_profile
+ln -s `pwd`/bin/ $HOME/.local/bin
+
 
 echo "Configuring Vim"
 rm $HOME/.vimrc || true 2>/dev/null
 ln -s `pwd`/.vimrc $HOME/.vimrc
-
-[[ ! -f $HOME/.vim/bundle/Vundle.vim ]] && git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 
 
 echo "Configuring i3"
@@ -44,7 +45,6 @@ rm -rf $HOME/.xprofile || true 2>/dev/null
 ln -s `pwd`/.xprofile $HOME/.xprofile
 rm -rf $HOME/.Xresources || true 2>/dev/null
 ln -s `pwd`/Xresources $HOME/.Xresources
-systemctl --user enable redshift-gtk.service
 
 rm -rf $HOME/.git-prompt.sh || true 2>/dev/null
 ln -s `pwd`/git-prompt.sh $HOME/.git-prompt.sh
@@ -53,7 +53,7 @@ echo "Configuring GTK themes"
 rm -rf $HOME/.themes || true 2>/dev/null
 ln -s `pwd`/themes $HOME/.themes
 rm -rf $HOME/.config/gtk-3.0 || true 2>/dev/null
-ln -s `pwd`/gtk-3.0 s$HOME/.config/gtk-3.0
+ln -s `pwd`/gtk-3.0 $HOME/.config/gtk-3.0
 
 echo "Configuring nitrogen"
 rm -rf $HOME/.config/nitrogen || true 2>/dev/null
