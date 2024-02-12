@@ -1,5 +1,9 @@
 # i3 config file (v4)
 # Please see http://i3wm.org/docs/userguide.html for a complete reference!
+# This file is a modified version based on default i3-config-wizard config
+# source is available here:
+# https://raw.githubusercontent.com/endeavouros-team/endeavouros-i3wm-setup/master/.config/i3/config
+# Maintainer: mauromsl
 
 # Set mod key (Mod1=<Alt>, Mod4=<Super>)
 set $mod Mod4
@@ -34,7 +38,13 @@ bindsym $mod+Shift+Return exec i3-sensible-terminal -p light
 bindsym $mod+Shift+q kill
 
 # start program launcher
-bindsym $mod+d exec --no-startup-id dmenu_recency
+#bindsym $mod+d exec --no-startup-id dmenu_recency
+bindsym $mod+d exec rofi -modi drun -show drun \
+		-config ~/.config/rofi/rofidmenu.rasi
+
+## rofi bindings for window menu ($mod+t /F10 optional disabled)
+bindsym $mod+t exec rofi -show window \
+		-config ~/.config/rofi/rofidmenu.rasi
 
 # launch categorized menu
 bindsym $mod+z exec --no-startup-id morc_menu
@@ -60,13 +70,28 @@ exec --no-startup-id volumeicon
 ################################################################################################
 
 # Pulse Audio controls
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5% #increase sound volume && $refresh_i3status
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5% #decrease sound volume && $refresh_i3status
-#bindsym XF86AudioRaiseVolume exec --no-startup-id notify-send $(pactl list sinks | grep '^[[:space:]]Volume:' | head -n $(( @SINK@ + 1 )) | tail -n 1 | sed -e 's,.* \([0-9][0-9]*\)%.*,\1,'
+# bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5% #increase sound volume && $refresh_i3status
+# bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5% #decrease sound volume && $refresh_i3status
+
+# use meta keys showing osc using dunst
+bindsym XF86AudioRaiseVolume exec --no-startup-id ~/.config/i3/scripts/volume_brightness.sh volume_up
+bindsym XF86AudioLowerVolume exec --no-startup-id ~/.config/i3/scripts/volume_brightness.sh volume_down
+
+# gradular volume control with amixer
+bindsym $mod+XF86AudioRaiseVolume exec amixer -D pulse sset Master 1%+ && pkill -RTMIN+5 i3blocks
+bindsym $mod+XF86AudioLowerVolume exec amixer -D pulse sset Master 1%- && pkill -RTMIN+5 i3blocks
+
+# mic mute toggle with amixer
+bindsym XF86AudioMicMute exec amixer sset Capture toggle
 
 # Screen brightness controls
-# bindsym XF86MonBrightnessUp exec "xbacklight -inc 10; notify-send 'brightness up'"
-# bindsym XF86MonBrightnessDown exec "xbacklight -dec 10; notify-send 'brightness down'"
+ # bindsym XF86MonBrightnessUp exec "xbacklight -inc 3; notify-send 'brightness up'"
+ # bindsym XF86MonBrightnessDown exec "xbacklight -dec 3; notify-send 'brightness down'"
+
+# Backlight setting using dunst osc
+bindsym XF86MonBrightnessUp exec --no-startup-id ~/.config/i3/scripts/volume_brightness.sh brightness_up
+bindsym XF86MonBrightnessDown exec --no-startup-id ~/.config/i3/scripts/volume_brightness.sh brightness_down
+
 
 # Start Applications
 bindsym $mod+Ctrl+b exec terminal -e 'bmenu'
@@ -75,7 +100,7 @@ bindsym $mod+F3 exec pcmanfm
 # bindsym $mod+F3 exec ranger
 bindsym $mod+Shift+F3 exec gksu pcmanfm
 bindsym $mod+F5 exec terminal -e 'mocp'
-bindsym $mod+t exec --no-startup-id pkill compton
+bindsym $mod+Shift+t exec --no-startup-id pkill compton
 bindsym $mod+Ctrl+t exec --no-startup-id compton -b
 bindsym $mod+Shift+d --release exec "killall dunst; exec notify-send 'restart dunst'"
 bindsym Print exec "flameshot gui"
@@ -167,14 +192,18 @@ bindsym $mod+Ctrl+Left workspace prev
 # to display names or symbols instead of plain workspace numbers you can use
 # something like: set $ws1 1:mail
 #                 set $ws2 2:
-set $ws1 1
-set $ws2 2
-set $ws3 3
-set $ws4 4
-set $ws5 5
-set $ws6 6
-set $ws7 7
-set $ws8 8
+set $ws1 "1:"
+set $ws2 "2:"
+set $ws3 "3:"
+set $ws4 "4:"
+set $ws5 "5:🎵📻"
+set $ws6 "6:"
+set $ws7 "7"
+set $ws8 "8:"
+
+# switch/iterate between workspaces
+bindsym $mod+Tab workspace next
+bindsym $mod+Shift+Tab workspace prev
 
 # switch to workspace
 bindsym $mod+1 workspace $ws1
@@ -254,8 +283,9 @@ bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 
+
 # Set shut down, restart and locking features
-bindsym $mod+0 mode "$mode_system"
+# bindsym $mod+0 mode "$mode_system"
 set $mode_system (l)ock, (e)xit, switch_(u)ser, (s)uspend, (h)ibernate, (r)eboot, (Shift+s)hutdown
 mode "$mode_system" {
     bindsym l exec --no-startup-id i3exit lock, mode "default"
@@ -270,6 +300,9 @@ mode "$mode_system" {
     bindsym Return mode "default"
     bindsym Escape mode "default"
 }
+bindsym $mod+0 exec bash -c ~/.config/i3/scripts/powermenu
+# Lock
+#bindsym $mod+Shift+l exec --no-startup-id i3exit lock, mode "default"
 
 # Resize window (you can also use the mouse for that)
 bindsym $mod+r mode "resize"
@@ -347,8 +380,9 @@ set_from_resource $term_color15    color15
 
 # Start i3bar to display a workspace bar (plus the system information i3status if available)
 bar {
-	i3bar_command i3bar
-	status_command py3status
+	i3bar_command i3bar --transparency
+	#status_command py3status
+	status_command i3blocks -c ~/.config/i3/i3blocks.conf
 	position bottom
 	tray_output primary
 
@@ -375,16 +409,16 @@ bar {
         # urgent_workspace   #16a085 #FDF6E3 #E5201D
 
 	# Theme Colors NORD
-        separator  #2e3440
         background #2e3440
         statusline #eceff4
+        separator  #2e3440
 
         #                   border  background text
-        focused_workspace  #2e3440 #252936    #88c0d0
+        focused_workspace  #eceff4 #88c0d0    #252936
         active_workspace   #2e3440 #252936    #ebcb8b
         inactive_workspace #2e3440 #2e3440    #4c566a
+        binding_mode       #81a1c1 #252936    #eceff4
         urgent_workspace   #2e3440 #2e3440    #ee829f
-        binding_mode       #2e3440 #81a1c1    #2e3440
     }
 }
 
@@ -402,11 +436,11 @@ bindsym $mod+m bar mode toggle
 # Theme colors NORD
 # class                   border  backgr. text    indic.   child_border
   client.background       #2B2C2B
-  client.focused          #81a1c1 #81a1c1 #ffffff #81a1c1
-  client.unfocused        #2e3440 #2e3440 #d8dee9 #2e3440
-  client.focused_inactive #2e3440 #2e3440 #d8dee9 #2e3440
-  client.placeholder      #2e3440 #2e3440 #d8dee9 #2e3440
-  client.urgent           #900000 #900000 #ffffff #900000
+  client.focused          #4c566a #4c566a #88c0d0 #e5e9f0
+  client.unfocused        #2e3440 #2e3440 #5e81ac #2e3440
+  client.focused_inactive #2e3440 #2e3440 #5e81ac #2e3440
+  client.placeholder      #2e3440 #2e3440 #ffffff #2e3440
+  client.urgent           #CB4B16 #FDF6E3 #81a1c1 #268BD2
 
   client.background       #242424
 
