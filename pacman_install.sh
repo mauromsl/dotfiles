@@ -8,8 +8,6 @@ sudo pacman -Sy --noconfirm \
 	i3status \
 	i3lock \
 	i3-gaps \
-	py3status \
-	i3-blocks \
 	dunst \
 	rofi \
 	nitrogen \
@@ -25,5 +23,8 @@ sudo pacman -Sy --noconfirm \
 	flameshot \
 	peek \
 	playerctl \
+	acpilight \
+	blueman \
 	firefox
+	# py3status \
 
