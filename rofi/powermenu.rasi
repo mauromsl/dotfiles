@@ -122,3 +122,4 @@ textbox-prompt-colon {
 mainbox {
   children: [listview];
 }
+@theme "~/.config/rofi/nord.rasi"
