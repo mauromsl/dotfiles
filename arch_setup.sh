@@ -55,6 +55,14 @@ ln -s `pwd`/themes $HOME/.themes
 rm -rf $HOME/.config/gtk-3.0 || true 2>/dev/null
 ln -s `pwd`/gtk-3.0 $HOME/.config/gtk-3.0
 
+echo "Downloading icons and cursors"
+rm -rf $HOME/.local/share/icons || true 2>/dev/null
+ln -s `pwd`/share/icons $HOME/.local/share/icons
+curl 'https://github.com/alvatip/Nordzy-icon/releases/latest/download/Nordzy-cyan-dark--light_panel.tar.gz' -Lo /tmp/Nordzy-icons.tar.gz
+tar -zxvf /tmp/Nordzy-icons.tar.gz -C ~/git/dotfiles/share/icons/
+curl 'https://github.com/alvatip/Nordzy-cursors/releases/latest/download/Nordzy-cursors.tar.gz' -Lo /tmp/Nordzy-cursors.tar.gz
+tar -zxvf /tmp/Nordzy-cursors.tar.gz -C ~/git/dotfiles/share/icons/
+
 echo "Configuring rofi"
 rm -rf $HOME/.config/rofi || true 2>/dev/null
 ln -s `pwd`/rofi $HOME/.config/rofi

@@ -114,6 +114,9 @@ if $BACKGROUND == 'light'
   set background=light
 endif
 
+" *nix avoid clipboard clear on vim exit
+autocmd VimLeave * call system("xsel -ib", getreg('+'))
+
 " WSL yank support
 let s:clip = '/mnt/c/Windows/System32/clip.exe'  " change this path to match C drive mountpoint
 if executable(s:clip)

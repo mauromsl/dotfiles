@@ -25,6 +25,9 @@ sudo pacman -Sy --noconfirm \
 	playerctl \
 	acpilight \
 	blueman \
+	arandr \
+	autorandr \
+	xsel \
+	gimp \
 	firefox
-	# py3status \
 
