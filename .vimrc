@@ -56,7 +56,7 @@ Plug 'psliwka/vim-smoothie'
 
 " Extra points for style
 Plug 'vim-airline/vim-airline'
-Plug 'arcticicestudio/nord-vim'
+Plug 'nordtheme/vim'
 
 call plug#end()
 
@@ -64,6 +64,7 @@ call plug#end()
 highlight ExtraWhitespace ctermbg=blue guibg=blue
 match ExtraWhitespace /\s\+$\|[^ ]  [^ ]/
 :autocmd ColorScheme * highlight ExtraWhitespace ctermbg=blue guibg=blue
+set tabstop=4 softtabstop=4 shiftwidth=4 expandtab smartindent fileformat=unix
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " File type specific
 
@@ -91,6 +92,9 @@ set listchars=tab:--,trail:~,extends:>,precedes:<
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Remaps
+nnoremap <SPACE> <Nop>
+let mapleader=" "
+
 noremap <Up> <C-y>
 noremap <Down> <C-e>
 noremap <C-j> <C-d>
@@ -108,6 +112,10 @@ nnoremap <esc>^[ <esc>^[
 
 " Maps CtrlP to FZF
 nnoremap <C-p> :FZF<Cr>
+
+" python insert pdb
+nnoremap <leader>p oimport pdb; pdb.set_trace()<Esc>
+nnoremap <leader><S-p> Oimport pdb; pdb.set_trace()<Esc>
 
 colorscheme nord
 if $BACKGROUND == 'light'
