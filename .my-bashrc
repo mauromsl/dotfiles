@@ -1,7 +1,6 @@
 #
 # ~/.bashrc
 #
-
 [[ -f ~/.local/bin/git-prompt.sh ]] && . ~/.local/bin/git-prompt.sh
 GIT_PS1='$(__git_ps1 "(%s)")$ '
 PS1="$PS1$GIT_PS1"
@@ -9,3 +8,4 @@ HISTSIZE=-1
 HISTFILESIZE=-1
 PATH=$PATH:~/.local/bin
 TERMINAL=`which terminator`
+EDITOR=vim
