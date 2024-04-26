@@ -19,7 +19,7 @@ sudo pacman -Sy --noconfirm \
 	docker \
 	docker-compose \
 	openssh \
-	pulseaudio-jack \
+    pipewire-pulse \
 	flameshot \
 	peek \
 	playerctl \
@@ -29,5 +29,6 @@ sudo pacman -Sy --noconfirm \
 	autorandr \
 	xsel \
 	gimp \
+    transmission-cli \
 	firefox
 
