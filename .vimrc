@@ -38,7 +38,7 @@ Plug 'ap/vim-css-color'
 Plug 'gregsexton/matchtag'
 
 " Go (run :GoInstallBinaries to complete installation)
-Plug 'fatih/vim-go'
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 
 " Python
 "Plug 'python-mode/python-mode'
@@ -60,6 +60,14 @@ Plug 'nordtheme/vim'
 
 call plug#end()
 
+function! ShowDocumentation()
+  if CocAction('hasProvider', 'hover')
+    call CocActionAsync('doHover')
+  else
+    call feedkeys('K', 'in')
+  endif
+endfunction
+
 
 highlight ExtraWhitespace ctermbg=blue guibg=blue
 match ExtraWhitespace /\s\+$\|[^ ]  [^ ]/
@@ -74,11 +82,29 @@ function SetPythonOptions()
     " Match bad indent (starts with space AND number of spaces not multiple of 4)
     call matchadd('ExtraWhitespace', '\v^((([ ]{4})+[^ ])@!)(^[ ])@=[ ]*')
     hi MatchParen cterm=bold ctermbg=none ctermfg=magenta
+    " python insert pdb
+    nnoremap <leader>p oimport pdb; pdb.set_trace()<Esc>
+    nnoremap <leader><S-p> Oimport pdb; pdb.set_trace()<Esc>
+
 endfunction
 autocmd FileType python let b:coc_root_patterns = ['.git', './src/']
 
-au BufNewFile,BufRead *.html set tabstop=4 softtabstop=4 shiftwidth=4 expandtab smartindent fileformat=unix nowrap
-au BufNewFile,BufRead *.xml set tabstop=4 softtabstop=4 shiftwidth=4 expandtab smartindent fileformat=unix nowrap
+au FileType go call SetGoOptions()
+function SetGoOptions()
+    set tabstop=4 softtabstop=0 shiftwidth=4 colorcolumn=120 noexpandtab smartindent fileformat=unix
+    let g:go_highlight_functions = 1
+    let g:go_highlight_function_calls = 1
+    let g:go_highlight_extra_types = 1
+    let g:go_highlight_operators = 1
+
+    " Auto formatting and importing
+    let g:go_fmt_command = "goimports"
+    let g:go_metalinter_autosave = 1
+endfunction
+
+"autocmd BufWritePre *.go :GoMetaLinter
+au BufNewFile,BufRead *.html set tabstop=2 softtabstop=2 shiftwidth=2 expandtab smartindent fileformat=unix nowrap
+au BufNewFile,BufRead *.xml set tabstop=2 softtabstop=2 shiftwidth=2 expandtab smartindent fileformat=unix nowrap
 au BufNewFile,BufRead *.xsl set tabstop=2 softtabstop=2 shiftwidth=2 expandtab smartindent fileformat=unix nowrap
 au BufNewFile,BufRead *.csv set nowrap
 
@@ -95,6 +121,13 @@ set listchars=tab:--,trail:~,extends:>,precedes:<
 nnoremap <SPACE> <Nop>
 let mapleader=" "
 
+"CoC
+nnoremap <silent> <leader>d :call ShowDocumentation()<CR>
+inoremap <silent><expr> <tab> coc#pum#visible() ? coc#pum#confirm()
+                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+
+
+inoremap <silent><expr> <leader>d coc#refresh()
 noremap <Up> <C-y>
 noremap <Down> <C-e>
 noremap <C-j> <C-d>
@@ -112,10 +145,6 @@ nnoremap <esc>^[ <esc>^[
 
 " Maps CtrlP to FZF
 nnoremap <C-p> :FZF<Cr>
-
-" python insert pdb
-nnoremap <leader>p oimport pdb; pdb.set_trace()<Esc>
-nnoremap <leader><S-p> Oimport pdb; pdb.set_trace()<Esc>
 
 colorscheme nord
 if $BACKGROUND == 'light'
