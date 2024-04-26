@@ -161,9 +161,9 @@ bindsym $mod+q split toggle
 bindsym $mod+f fullscreen toggle
 
 # change container layout (stacked, tabbed, toggle split)
-bindsym $mod+s layout stacking
-bindsym $mod+w layout tabbed
-bindsym $mod+e layout toggle split
+bindsym $mod+s layout stacking; exec notify-send 'stacked layout'
+bindsym $mod+w layout tabbed; exec notify-send 'tabbed layout'
+bindsym $mod+e layout toggle split; exec notify-send 'toggle layout'
 
 # toggle tiling / floating
 bindsym $mod+Shift+space floating toggle
@@ -202,7 +202,7 @@ set $ws4 "4:"
 set $ws5 "5:🎵📻"
 set $ws6 "6:"
 set $ws7 "7"
-set $ws8 "8:"
+set $ws8 "8"
 
 # switch/iterate between workspaces
 bindsym $mod+Tab workspace next
