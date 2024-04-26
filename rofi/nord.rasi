@@ -55,7 +55,7 @@ message {
     padding: 5;
     border-color: @foreground;
     border:  0px 2px 2px 2px;
-    background-color: @nord7;
+    background-color: @nord8;
 }
 
 inputbar {
@@ -96,7 +96,7 @@ element {
 }
 
 element selected.normal {
-	background-color: @nord7;
+	background-color: @nord8;
 	text-color: #2e3440;
 }
 
