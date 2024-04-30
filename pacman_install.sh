@@ -8,6 +8,7 @@ sudo pacman -Sy --noconfirm \
 	i3status \
 	i3lock \
 	i3-gaps \
+    xcompmgr \
 	dunst \
 	rofi \
 	nitrogen \
