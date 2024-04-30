@@ -7,8 +7,9 @@ PS1="$PS1$GIT_PS1"
 HISTSIZE=-1
 HISTFILESIZE=-1
 PATH=$PATH:~/.local/bin
-PATH=$PATH:~/git/devtools/bin
+if [[ -d ~/git/devops/devtools/bin/ ]]; then
+    PATH=$PATH:~/git/devops/devtools/bin
+fi
 TERMINAL=`which terminator`
 EDITOR=vim
 alias tsm="transmission-remote"
-. secrets

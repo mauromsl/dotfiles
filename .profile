@@ -4,3 +4,4 @@ export EDITOR=/usr/bin/vim
 export BROWSER=/usr/bin/firefox
 export TERMINAL=terminator
 setxkbmap -option ctrl:nocaps
+. secrets
