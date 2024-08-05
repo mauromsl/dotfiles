@@ -10,8 +10,16 @@ import dbus
 import os
 import sys
 
+
+STATUS = {
+    "Playing": " ▶ ",
+    "Paused": " ⏸︎ ",
+    "Stopped": " ⏹ ",
+
+}
+
 try:
-    volume_str = ""
+    status_str = ""
     bus = dbus.SessionBus()
     try:
         # The electron app does not set a name for media player, it is set
@@ -33,11 +41,15 @@ try:
         elif (os.environ['BLOCK_BUTTON'] == '4'):
             # youtube-music MPRIS does not return correct volume always returns 1
             volume = player_iface.Get('org.mpris.MediaPlayer2.Player', 'Volume')
-            volume_str = f"{volume}%"
+            status_str = f"Vol: {volume}%"
 
     props = player_iface.Get('org.mpris.MediaPlayer2.Player', 'Metadata')
 
-    print(f"{volume_str} {props['xesam:artist'][0]} - {props['xesam:title']}").encode('utf-8')
+    if not status_str:
+        status = player_iface.Get('org.mpris.MediaPlayer2.Player', 'PlaybackStatus')
+        if status:
+            status_str = STATUS.get(str(status))
+    print(f"{status_str} {props['xesam:artist'][0]} - {props['xesam:title']}").encode('utf-8')
 except Exception as err:
     print(f"{err.__class__}: {err}")
     exit
