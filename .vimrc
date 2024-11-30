@@ -1,3 +1,5 @@
+""" Config
+""""""""""
 set number
 set relativenumber
 set background=dark
@@ -5,7 +7,6 @@ set encoding=utf-8
 set incsearch
 set hlsearch
 set gp=git\ grep\ -n
-hi Search ctermbg=LightBlue
 syntax on
 
 set splitbelow splitright
@@ -16,8 +17,8 @@ set wildmenu
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""" Plugins
+"""""""""""
 
 " Install vim-plug if we don't already have it
 if empty(glob('~/.vim/autoload/plug.vim'))
@@ -32,6 +33,10 @@ call plug#begin('~/.vim/plugged')
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
 
+" LSP
+Plug 'prabirshrestha/vim-lsp'
+Plug 'prabirshrestha/asyncomplete.vim'
+
 " HTML and CSS
 Plug 'mattn/emmet-vim'
 Plug 'ap/vim-css-color'
@@ -40,40 +45,29 @@ Plug 'gregsexton/matchtag'
 " Go (run :GoInstallBinaries to complete installation)
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 
-" Python
-"Plug 'python-mode/python-mode'
-"let g:pymode_python = 'python3'
-"Plug 'nvie/vim-flake8'
 
-"Autocompletion library (SLOW)
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
+" Files
+Plug 'junegunn/fzf'
+Plug 'iberianpig/ranger-explorer.vim'
 
-" General tools
-Plug 'junegunn/fzf',
+" Editing
 Plug 'mauromsl/vim-surround'
+Plug 'wellle/context.vim'
 Plug 'tpope/vim-commentary'
-Plug 'psliwka/vim-smoothie'
 
 " Extra points for style
 Plug 'vim-airline/vim-airline'
 Plug 'nordtheme/vim'
+Plug 'psliwka/vim-smoothie'
 
 call plug#end()
 
-function! ShowDocumentation()
-  if CocAction('hasProvider', 'hover')
-    call CocActionAsync('doHover')
-  else
-    call feedkeys('K', 'in')
-  endif
-endfunction
 
+""" Style
+"""""""""
 
-highlight ExtraWhitespace ctermbg=blue guibg=blue
-match ExtraWhitespace /\s\+$\|[^ ]  [^ ]/
-:autocmd ColorScheme * highlight ExtraWhitespace ctermbg=blue guibg=blue
+" :autocmd ColorScheme * highlight ExtraWhitespace ctermbg=blue guibg=blue
 set tabstop=4 softtabstop=4 shiftwidth=4 expandtab smartindent fileformat=unix
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " File type specific
 
 au FileType python call SetPythonOptions()
@@ -81,13 +75,18 @@ function SetPythonOptions()
     set tabstop=4 softtabstop=4 shiftwidth=4 colorcolumn=80 expandtab smartindent fileformat=unix
     " Match bad indent (starts with space AND number of spaces not multiple of 4)
     call matchadd('ExtraWhitespace', '\v^((([ ]{4})+[^ ])@!)(^[ ])@=[ ]*')
-    hi MatchParen cterm=bold ctermbg=none ctermfg=magenta
+    hi MatchParen cterm=bold ctermbg=NONE ctermfg=magenta
     " python insert pdb
     nnoremap <leader>p oimport pdb; pdb.set_trace()<Esc>
     nnoremap <leader><S-p> Oimport pdb; pdb.set_trace()<Esc>
 
 endfunction
-autocmd FileType python let b:coc_root_patterns = ['.git', './src/']
+au FileType css call SetCSSOptions()
+function SetCSSOptions()
+    set tabstop=4 softtabstop=4 shiftwidth=4 colorcolumn=80 expandtab smartindent fileformat=unix
+    set tabstop=2 softtabstop=2 shiftwidth=2 expandtab smartindent fileformat=unix
+
+endfunction
 
 au FileType go call SetGoOptions()
 function SetGoOptions()
@@ -108,26 +107,24 @@ au BufNewFile,BufRead *.xml set tabstop=2 softtabstop=2 shiftwidth=2 expandtab s
 au BufNewFile,BufRead *.xsl set tabstop=2 softtabstop=2 shiftwidth=2 expandtab smartindent fileformat=unix nowrap
 au BufNewFile,BufRead *.csv set nowrap
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Render Whitespace
 set list
 set listchars=tab:--,trail:~,extends:>,precedes:<
 
+""" Remaps
+""""""""""
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-" Remaps
 nnoremap <SPACE> <Nop>
+" map <Space> <Leader>
 let mapleader=" "
 
 "CoC
-nnoremap <silent> <leader>d :call ShowDocumentation()<CR>
-inoremap <silent><expr> <tab> coc#pum#visible() ? coc#pum#confirm()
-                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+"xnoremap <silent> <leader>d :call ShowDocumentation()<CR>
+" inoremap <silent><expr> <tab> pumvisible() ? coc#pum#confirm() : "\<C-g>u\<tab>"
 
 
-inoremap <silent><expr> <leader>d coc#refresh()
+" inoremap <silent><expr> <leader>d coc#refresh()
 noremap <Up> <C-y>
 noremap <Down> <C-e>
 noremap <C-j> <C-d>
@@ -146,15 +143,22 @@ nnoremap <esc>^[ <esc>^[
 " Maps CtrlP to FZF
 nnoremap <C-p> :FZF<Cr>
 
-colorscheme nord
-if $BACKGROUND == 'light'
-  set background=light
-endif
+colorscheme menord
+" if $BACKGROUND == 'light'
+"   set background=light
+" endif
+"
+" Avoid themes overriding background color/transparency
+highlight Normal guibg=NONE
+highlight Normal ctermbg=NONE
+highlight NonText guibg=NONE
+highlight NonText ctermbg=NONE
+highlight LspInlayHint ctermbg=gray guibg=gray
 
 " *nix avoid clipboard clear on vim exit
 autocmd VimLeave * call system("xsel -ib", getreg('+'))
 
-" WSL yank support
+" WSL yank to clipboard support
 let s:clip = '/mnt/c/Windows/System32/clip.exe'  " change this path to match C drive mountpoint
 if executable(s:clip)
     augroup WSLYank
@@ -162,3 +166,81 @@ if executable(s:clip)
       autocmd TextYankPost * if v:event.operator ==# 'y' | call system(s:clip, @0) | endif
     augroup END
 endif
+
+" fzf
+"let $FZF_DEFAULT_OPTS="--preview 'bat --color=always {}' --color=dark"
+let $FZF_DEFAULT_OPTS="--preview 'vimcat {}' --height 40% --tmux bottom,40% --border top"
+let g:fzf_vim = {}
+let g:fzf_vim.preview_window = ['top,20%', 'ctrl-/']
+
+" ranger
+" nnoremap <silent><Leader>n :RangerOpenCurrentFile<CR>
+nnoremap <silent><Leader>c :RangerOpenCurrentDir<CR>
+nnoremap <C-f> :RangerOpenProjectRootDir<CR>
+let g:ranger_explorer_keymap_edit    = '<C-e>'
+
+""" LSP Config
+""""""""""""""
+" pylsp
+"
+if executable('pylsp')
+    " pip install python-lsp-server
+    au User lsp_setup call lsp#register_server({
+        \ 'name': 'pylsp',
+        \ 'cmd': {server_info->['pylsp']},
+        \ 'allowlist': ['python'],
+        \ })
+endif
+
+" LSP bindings
+function! s:on_lsp_buffer_enabled() abort
+    setlocal omnifunc=lsp#complete
+    setlocal signcolumn=yes
+    if exists('+tagfunc') | setlocal tagfunc=lsp#tagfunc | endif
+    nmap <buffer> gd <plug>(lsp-definition)
+    nmap <buffer> gs <plug>(lsp-document-symbol-search)
+    nmap <buffer> gS <plug>(lsp-workspace-symbol-search)
+    nmap <buffer> gr <plug>(lsp-references)
+    nmap <buffer> gi <plug>(lsp-implementation)
+    nmap <buffer> gt <plug>(lsp-type-definition)
+    nmap <buffer> <leader>rn <plug>(lsp-rename)
+    nmap <buffer> [g <plug>(lsp-previous-diagnostic)
+    nmap <buffer> ]g <plug>(lsp-next-diagnostic)
+    nmap <buffer> gh <plug>(lsp-hover)
+    nnoremap <buffer> <expr><c-k> lsp#scroll(+4)
+    nnoremap <buffer> <expr><c-j> lsp#scroll(-4)
+
+
+    let g:lsp_format_sync_timeout = 1000
+    autocmd! BufWritePre *.rs,*.go call execute('LspDocumentFormatSync')
+
+endfunction
+
+augroup lsp_install
+    au!
+    " call s:on_lsp_buffer_enabled only for languages that has the server registered.
+    autocmd User lsp_buffer_enabled call s:on_lsp_buffer_enabled()
+augroup END
+
+"autocomplete
+let g:asyncomplete_auto_popup = 1
+inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+inoremap <expr> <cr>    pumvisible() ? asyncomplete#close_popup() : "\<cr>"
+imap <c-space> <Plug>(asyncomplete_force_refresh)
+
+highlight ExtraWhitespace ctermbg=magenta guibg=magenta
+if has('nvim')
+    " nvim stutters with default presenter
+    let g:context_presenter = 'preview'
+    " nord theme not picked up by nvim, set explicitely
+    highlight ExtraWhitespace guibg='#B48EAD'
+else
+    " This is annoying without inlay rendering
+    let g:lsp_diagnostics_enabled = 0
+endif
+let g:context_max_height = 0
+let g:context_max_per_indent = 0
+
+"
+match ExtraWhitespace /\s\+\%#\@<!$/
