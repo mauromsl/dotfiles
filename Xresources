@@ -1,4 +1,4 @@
-Xft.dpi:       96
+Xft.dpi:       109
 Xft.antialias: true
 Xft.hinting:   true
 Xft.rgba:      rgb
@@ -117,8 +117,8 @@ URxvt*saveLines:                  5000
 
 ! for 'fake' transparency (without Compton) uncomment the following three lines
 ! URxvt*inheritPixmap:            true
-! URxvt*transparent:              true
-! URxvt*shading:                  138
+URxvt*transparent:              true
+URxvt*shading:                  20
 
 ! Normal copy-paste keybindings without perls
 URxvt.iso14755:                   false
