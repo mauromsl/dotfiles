@@ -119,13 +119,13 @@ menu=(
   [ Suspend]="systemctl suspend"
   [ Hibernate]="systemctl hibernate"
   [ Lock]="~/.config/i3/scripts/blur-lock"
-  [ Logout]="i3-msg exit"
+  [ Exit]="i3-msg exit"
 )
 
 menu_nrows=${#menu[@]}
 
 # Menu entries that may trigger a confirmation message
-menu_confirm="Shutdown Reboot Hibernate Suspend Halt Logout"
+menu_confirm="Shutdown Reboot Hibernate Suspend Halt Exit"
 
 launcher_exe=""
 launcher_options=""

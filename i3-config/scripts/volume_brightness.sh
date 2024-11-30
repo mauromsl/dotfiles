@@ -7,7 +7,7 @@
 bar_color="#88c0d0"
 volume_step=1
 brightness_step=2.5
-max_volume=120
+max_volume=150
 
 # Uses regex to get volume from pactl
 function get_volume {

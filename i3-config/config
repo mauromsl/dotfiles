@@ -1,8 +1,4 @@
-# i3 config file (v4)
 # Please see http://i3wm.org/docs/userguide.html for a complete reference!
-# This file is a modified version based on default i3-config-wizard config
-# source is available here:
-# https://raw.githubusercontent.com/endeavouros-team/endeavouros-i3wm-setup/master/.config/i3/config
 # Maintainer: mauromsl
 
 # Set mod key (Mod1=<Alt>, Mod4=<Super>)
@@ -23,8 +19,19 @@ bindsym $mod+u border none
 bindsym $mod+y border pixel 1
 bindsym $mod+n border normal
 
-# exec xcompmgr for transparency
-exec xcompmgr
+# Compositor: fastcompmgr for speed or picom for style
+# set $compositor picom
+exec --no-startup-id fastcompmgr
+bindsym $mod+c exec --no-startup-id pkill picom
+bindsym $mod+Ctrl+c exec --no-startup-id picom -b
+
+# Fire autorandr config for xrandr
+exec --no-startup-id autorandr --cycle
+exec --no-startup-id ~/.config/autorandr/postswitch
+
+# bindsym $mod+c exec toggle-compositor $compositor
+# bindsym $mod+Ctrl+c exec picom
+
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
 font xft:URWGothic-Book 11
@@ -34,27 +41,32 @@ floating_modifier $mod
 
 # start a terminal
 bindsym $mod+Return exec i3-sensible-terminal
+# Start a terminal in light mode
 bindsym $mod+Shift+Return exec i3-sensible-terminal -p light
 
 # kill focused window
 bindsym $mod+Shift+q kill
 
-# start program launcher
-#bindsym $mod+d exec --no-startup-id dmenu_recency
+# app launchers
+bindsym $mod+Shift+d exec --no-startup-id ulauncher
 bindsym $mod+d exec rofi -modi drun -show drun \
 		-config ~/.config/rofi/rofidmenu.rasi
+bindsym $mod+Ctrl+shift+d exec --no-startup-id dmenu_recency
 
-## rofi bindings for window menu ($mod+t /F10 optional disabled)
-bindsym $mod+t exec rofi -show window \
+## rofi bindings for window menu ($mod+q /F10 optional disabled)
+bindsym $mod+q exec rofi -show window \
 		-config ~/.config/rofi/rofidmenu.rasi
 
 # launch categorized menu
 bindsym $mod+z exec --no-startup-id morc_menu
 
-# launch screencapture
+# launch screencapture daemon
 exec --no-startup-id flameshot
+
+# Launch ulauncher daemonb
+exec --no-startup-id ulauncher
 ################################################################################################
-## sound-section - DO NOT EDIT if you wish to automatically upgrade Alsa -> Pulseaudio later! ##
+## sound-section                                                                              ##
 ################################################################################################
 
 #bindsym $mod+Ctrl+m exec terminal -e 'alsamixer'
@@ -63,13 +75,10 @@ exec --no-startup-id flameshot
 bindsym $mod+Ctrl+m exec pavucontrol
 exec --no-startup-id volumeicon
 
-#bindsym XF86AudioPrev exec playerctl previous
-
-
-
 ################################################################################################
 
 # Pulse Audio controls
+#bindsym XF86AudioPrev exec playerctl previous
 # bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5% #increase sound volume && $refresh_i3status
 # bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5% #decrease sound volume && $refresh_i3status
 
@@ -89,7 +98,8 @@ bindsym $mod+XF86AudioPlay exec playerctl next
 
 bindsym XF86AudioNext exec playerctl next
 bindsym $mod+XF86AudioNext exec playerctl previous
-# Screen brightness controls
+
+# Screen brightness controls using xbkaclight
  # bindsym XF86MonBrightnessUp exec "xbacklight -inc 3; notify-send 'brightness up'"
  # bindsym XF86MonBrightnessDown exec "xbacklight -dec 3; notify-send 'brightness down'"
 
@@ -100,34 +110,33 @@ bindsym XF86MonBrightnessDown exec --no-startup-id ~/.config/i3/scripts/volume_b
 
 # Start Applications
 bindsym $mod+Ctrl+b exec terminal -e 'bmenu'
-bindsym $mod+F2 exec palemoon
-bindsym $mod+F3 exec pcmanfm
-# bindsym $mod+F3 exec ranger
-bindsym $mod+Shift+F3 exec gksu pcmanfm
-bindsym $mod+F5 exec terminal -e 'mocp'
-bindsym $mod+Shift+t exec --no-startup-id pkill compton
-bindsym $mod+Ctrl+t exec --no-startup-id compton -b
-bindsym $mod+Shift+d --release exec "killall dunst; exec notify-send 'restart dunst'"
+bindsym $mod+F2 exec firefox
+bindsym $mod+F3 exec xdg-open '~/'
+
+# Custom binds
+bindsym $mod+Ctrl+d --release exec "killall dunst; exec notify-send 'restart dunst'"
+
+# screengrabs
 bindsym Print exec "flameshot gui"
 bindsym Shift+Print exec peek
 bindsym $mod+Print --release exec --no-startup-id i3-scrot -w
 bindsym $mod+Shift+Print --release exec --no-startup-id i3-scrot -s
 bindsym Ctrl+Print exec "flameshot gui -d 3000"
-bindsym $mod+Ctrl+Shift+h exec xdg-open /usr/share/doc/manjaro/i3_help.pdf
 bindsym $mod+Ctrl+x --release exec --no-startup-id xkill
 
 # ROG button on Asus ROG machines
 bindsym XF86Launch1 exec rog-control-center
 
-focus_follows_mouse no
 
 # change focus
+focus_follows_mouse no
+
 bindsym $mod+h focus left
 bindsym $mod+j focus down
 bindsym $mod+k focus up
 bindsym $mod+l focus right
 
-# alternatively, you can use the cursor keys:
+# alternatively, you can use the arrow keys:
 bindsym $mod+Left focus left
 bindsym $mod+Down focus down
 bindsym $mod+Up focus up
@@ -139,13 +148,14 @@ bindsym $mod+Shift+j move down
 bindsym $mod+Shift+k move up
 bindsym $mod+Shift+l move right
 
-# alternatively, you can use the cursor keys:
+# alternatively, you can use the arrow keys:
 bindsym $mod+Shift+Left move left
 bindsym $mod+Shift+Down move down
 bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 
 # move focused workspace between monitors
+bindsym $mod+Ctrl+slash move workspace to output next
 bindsym $mod+Ctrl+greater move workspace to output right
 bindsym $mod+Ctrl+less move workspace to output left
 
@@ -157,15 +167,15 @@ bindsym $mod+Shift+b move container to workspace back_and_forth; workspace back_
 # split orientation
 bindsym $mod+Ctrl+h split h;exec notify-send 'tile horizontally'
 bindsym $mod+v split v;exec notify-send 'tile vertically'
-bindsym $mod+q split toggle
+bindsym $mod+t split toggle
 
 # toggle fullscreen mode for the focused container
 bindsym $mod+f fullscreen toggle
 
 # change container layout (stacked, tabbed, toggle split)
-bindsym $mod+s layout stacking; exec notify-send 'stacked layout'
-bindsym $mod+w layout tabbed; exec notify-send 'tabbed layout'
-bindsym $mod+e layout toggle split; exec notify-send 'toggle layout'
+# bindsym $mod+s layout stacking; exec notify-send 'stacked layout'
+#bindsym $mod+w layout tabbed; exec notify-send 'tabbed layout'
+bindsym $mod+e layout toggle split tabbed; exec notify-send 'toggle split layout'
 
 # toggle tiling / floating
 bindsym $mod+Shift+space floating toggle
@@ -178,6 +188,7 @@ bindsym $mod+Shift+s sticky toggle
 
 # focus the parent container
 bindsym $mod+a focus parent
+bindsym $mod+Shift+a focus child
 
 # move the currently focused window to the scratchpad
 bindsym $mod+Shift+minus move scratchpad
@@ -265,7 +276,7 @@ for_window [class="Oblogout"] fullscreen enable
 for_window [class="octopi"] floating enable
 for_window [title="About Pale Moon"] floating enable
 for_window [class="Pamac-manager"] floating enable
-for_window [class="Pavucontrol"] floating enable
+for_window [class="pavucontrol"] floating enable
 for_window [class="qt5ct"] floating enable sticky enable border normal
 for_window [class="Qtconfig-qt4"] floating enable sticky enable border normal
 for_window [class="Simple-scan"] floating enable border normal
@@ -338,10 +349,11 @@ bindsym $mod+9 exec --no-startup-id blurlock
 
 # Autostart applications
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
-exec --no-startup-id nitrogen --restore; sleep 1; compton -b
-exec --no-startup-id manjaro-hello
+#exec --no-startup-id nitrogen --restore; sleep 1; compton -b
+#exec --no-startup-id manjaro-hello
 exec --no-startup-id nm-applet
 exec --no-startup-id xfce4-power-manager
+#exec --no-startup-id caffeine
 exec --no-startup-id pamac-tray
 exec --no-startup-id clipit
 exec --no-startup-id blueman-applet
