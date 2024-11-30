@@ -1,0 +1,18 @@
+# ~/.local/bin/toggle-compositor:
+#!/bin/bash
+
+compositor=$1
+
+# Turn off compositor
+if pgrep -x $compositor; then
+    pkill $compositor
+    notify-send -a "Compositor off" "$compositor is now off."
+    exit
+fi
+
+# Turn on compositor
+if ! pgrep -x $compositor; then
+    $compositor &>/dev/null &
+    notify-send -a "Compositor on" "$compositor is now on."
+    exit
+fi
