@@ -12,4 +12,11 @@ if [[ -d ~/git/devops/devtools/bin/ ]]; then
 fi
 TERMINAL=`which terminator`
 EDITOR=vim
+VISUAL=vim
 alias tsm="transmission-remote"
+alias ll="ls -alhtr"
+
+# Setting fd as the default source for fzf
+export FZF_DEFAULT_COMMAND='fd --type f --strip-cwd-prefix'
+
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"

@@ -41,6 +41,8 @@ rm -rf $HOME/.gitconfig || true 2>/dev/null
 ln -s `pwd`/.gitconfig $HOME/.gitconfig
 
 echo "Configuring X"
+rm -rf $HOME/.Xmodmap || true 2>/dev/null
+ln -s `pwd`/Xmodmap $HOME/.Xmodmap
 rm -rf $HOME/.xprofile || true 2>/dev/null
 ln -s `pwd`/.xprofile $HOME/.xprofile
 rm -rf $HOME/.Xresources || true 2>/dev/null
