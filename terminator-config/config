@@ -11,8 +11,8 @@
   layout_launcher = <Shift><Alt>l
 [profiles]
   [[default]]
-    background_color = "#3b4252"
-    background_darkness = 0.90
+    background_color = "#2e3440"
+    background_darkness = 0.96
     background_type = transparent
     font = Monospace 11
     foreground_color = "#ffffff"
@@ -28,6 +28,8 @@
     title_inactive_bg_color = "#d8dee9"
   [[light]]
     background_color = "#ffffff"
+    background_darkness = 0.95
+    background_type = transparent
     font = Monospace 12
     foreground_color = "#000000"
     show_titlebar = False
@@ -56,4 +58,24 @@
     [[[window0]]]
       parent = ""
       type = Window
+  [[SaveLastSessionLayout]]
+    [[[child0]]]
+      type = Window
+      parent = ""
+      order = 0
+      position = 481:136
+      maximised = False
+      fullscreen = False
+      size = 958, 898
+      title = termscratchpad
+      last_active_term = 49c80187-c2bd-45fa-b2c4-89d2f22d5a5c
+      last_active_window = True
+    [[[terminal1]]]
+      type = Terminal
+      parent = child0
+      order = 0
+      profile = default
+      uuid = 49c80187-c2bd-45fa-b2c4-89d2f22d5a5c
+      directory = None
 [plugins]
+ins]
