@@ -3,7 +3,7 @@
  * Maintainer: joekamprad [joekamprad //a_t// endeavouros.com]
  *******************************************************/
 configuration {
-    font:                "Noto Sans Regular 10";
+    font:                "Noto Sans Light 16";
     show-icons:          true;
     display-drun:        "Apps";
     drun-display-format: "{name}";
@@ -16,12 +16,8 @@ configuration {
 
 window {
     background-color: @background;
-    border:           0;
+    border:           10;
     padding:          30;
-}
-listview {
-    lines:   10;
-    columns: 3;
 }
 mainbox {
     border:  0;
@@ -42,6 +38,8 @@ listview {
     spacing:      8px;
     scrollbar:    false;
     padding:      2px 0px 0px;
+    dynamic: true;
+    columns: 1;
 }
 element {
     border:  0;
@@ -133,3 +131,7 @@ textbox-prompt-colon {
     text-color: @normal-foreground;
 }
 @theme "~/.config/rofi/nord.rasi"
+
+element-icon {
+    size: 2.5ch;
+}
