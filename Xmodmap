@@ -1,0 +1,11 @@
+! this script remaps caps lock to mod3
+! mod3 defaults to super but also hyper so we free mod3 mod4 and lock before remapping
+clear lock
+clear mod3
+clear mod4
+! set caps lock to hyper key
+keycode 66 = Hyper_L NoSymbol Hyper_L
+! mod3 to be hyper (which is now caps lock)
+add mod3 = Hyper_L
+! Super keys are mod 4 (but not hyper key)
+add mod4 = Super_L Super_R
