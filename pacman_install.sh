@@ -19,6 +19,7 @@ sudo pacman -Sy --noconfirm \
 	terminator \
 	docker \
 	docker-compose \
+    ruff \
 	openssh \
     pipewire-pulse \
 	flameshot \
@@ -26,10 +27,21 @@ sudo pacman -Sy --noconfirm \
 	playerctl \
 	acpilight \
 	blueman \
+    gotop \
 	arandr \
 	autorandr \
 	xsel \
 	gimp \
     transmission-cli \
+    ranger \
+    picom \
+    fastcompmgr \
+    clipit \
+    # equalizer \
+    easyeffects \
+    easyeffects-presets \
+    calf \
+    lsp-plugins \
+    zam-plugins \
 	firefox
 
