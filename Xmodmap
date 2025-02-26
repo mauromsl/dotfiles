@@ -1,11 +1,18 @@
-! this script remaps caps lock to mod3
-! mod3 defaults to super but also hyper so we free mod3 mod4 and lock before remapping
-clear lock
-clear mod3
-clear mod4
-! set caps lock to hyper key
-keycode 66 = Hyper_L NoSymbol Hyper_L
-! mod3 to be hyper (which is now caps lock)
-add mod3 = Hyper_L
-! Super keys are mod 4 (but not hyper key)
-add mod4 = Super_L Super_R
+remove Lock = Caps_Lock
+keysym Caps_Lock = Control_L
+add Control = Control_L
+
+! Spanish remaps
+! Eñe!
+keycode 57 = n N U00f1 U00d1 U00f1 U00d1
+
+! Remap vowels to their accented counterparts when pressing AltGr
+keycode 38 = a A aacute Aacute aacute Aacute
+keycode 26 = e E eacute Eacute eacute Eacute
+keycode 31 = i I iacute Iacute iacute Iacute
+keycode 32 = o O oacute Oacute oacute Oacute
+keycode 30 = u U uacute Uacute uacute Uacute
+
+! braces and brackets over parens buttons
+keycode  18 = 9 parenleft bracketleft braceleft bracketleft braceleft
+keycode  19 = 0 parenright bracketright braceright bracketright braceright
