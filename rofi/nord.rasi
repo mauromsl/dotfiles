@@ -35,12 +35,12 @@ window {
     location: center;
     anchor:   center;
     transparency: "screenshot";
-    padding: 0px;
+    padding: 10px;
     border:  0px;
     border-radius: 6px;
 
     background-color: @transparent;
-    spacing: 1;
+    spacing: 0;
     children:  [mainbox];
     orientation: horizontal;
 }
@@ -79,12 +79,12 @@ prompt {
 }
 
 listview {
-    padding: 20px;
+    padding: 8px;
     border-radius: 0px 0px 6px 6px;
     border-color: @nord10;
     border: 0px 1px 1px 1px;
     background-color: rgba(46,52,64,0.9);
-    dynamic: true;
+    dynamic: false;
 }
 
 element {

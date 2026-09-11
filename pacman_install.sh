@@ -37,11 +37,13 @@ sudo pacman -Sy --noconfirm \
     picom \
     fastcompmgr \
     clipit \
+    python-cookiecutter \
     # equalizer \
     easyeffects \
     easyeffects-presets \
     calf \
     lsp-plugins \
     zam-plugins \
-	firefox
+	firefox \
+    brightnessctl
 

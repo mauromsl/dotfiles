@@ -9,6 +9,24 @@ volume_step=1
 brightness_step=2.5
 max_volume=150
 
+get_backlight_device() {
+    local dev
+    # Try AMD first
+    dev=$(ls /sys/class/backlight/ 2>/dev/null | grep -E '^amdgpu' | head -n 1)
+    # If not found, try Intel
+    if [ -z "$dev" ]; then
+        dev=$(ls /sys/class/backlight/ 2>/dev/null | grep -E '^intel_backlight' | head -n 1)
+    fi
+    # Fallback to whatever backlight interface is present
+    if [ -z "$dev" ]; then
+        dev=$(ls /sys/class/backlight/ 2>/dev/null | head -n 1)
+    fi
+    echo "$dev"
+}
+
+# Finds the active amdgpu device automatically
+BACKLIGHT_DEVICE=$(get_backlight_device)
+
 # Uses regex to get volume from pactl
 function get_volume {
     pactl get-sink-volume @DEFAULT_SINK@ | grep -Po '[0-9]{1,3}(?=%)' | head -1
@@ -21,7 +39,7 @@ function get_mute {
 
 # Uses regex to get brightness from xbacklight
 function get_brightness {
-    xbacklight -get
+    brightnessctl -d "$BACKLIGHT_DEVICE" info | grep -oP '\(\K[0-9]+(?=%\))'
 }
 
 # Returns a mute icon, a volume-low icon, or a volume-high icon, depending on the volume
@@ -84,13 +102,15 @@ case $1 in
 
     brightness_up)
     # Increases brightness and displays the notification
-    xbacklight -inc $brightness_step -time 0 
+    # xbacklight -inc $brightness_step -time 0 
+    brightnessctl -d "$BACKLIGHT_DEVICE" set +5%
     show_brightness_notif
     ;;
 
     brightness_down)
     # Decreases brightness and displays the notification
-    xbacklight -dec $brightness_step -time 0
+    # xbacklight -dec $brightness_step -time 0
+    brightnessctl -d "$BACKLIGHT_DEVICE" set 5%-
     show_brightness_notif
     ;;
 esac
