@@ -14,5 +14,10 @@ keycode 32 = o O oacute Oacute oacute Oacute
 keycode 30 = u U uacute Uacute uacute Uacute
 
 ! braces and brackets over parens buttons
-keycode  18 = 9 parenleft bracketleft braceleft bracketleft braceleft
-keycode  19 = 0 parenright bracketright braceright bracketright braceright
+keycode 18 = 9 parenleft bracketleft braceleft bracketleft braceleft
+keycode 19 = 0 parenright bracketright braceright bracketright braceright
+
+! parens and braces over s d
+keycode 39 = s S parenleft braceleft parenleft braceleft a b
+keycode 40 = d D parenright braceright parenright braceright a b
+
